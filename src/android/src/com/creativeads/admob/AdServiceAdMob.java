@@ -5,11 +5,22 @@ import android.content.Context;
 import android.util.Log;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.AdapterStatus;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
+
+import com.facebook.ads.AudienceNetworkAds;
+
+//import com.google.android.ads.mediationtestsuite.MediationTestSuite;
 import com.creativeads.AdBanner;
 import com.creativeads.AdInterstitial;
 import com.creativeads.AdRewardedVideo;
 import com.creativeads.AdService;
+//import com.applovin.sdk.AppLovinPrivacySettings;
 // import com.unity3d.ads.metadata.MetaData;
+//import com.google.ads.mediation.adcolony.AdColonyMediationAdapter;
+
 
 import org.json.JSONObject;
 
@@ -53,8 +64,25 @@ public class AdServiceAdMob implements AdService {
         Log.d(TAG, "Initializing with appId: " + appId);
 
         if (!_initialized) {
+           
+          //  AdColony.AppOptions appOptions = new AdColony.AppOptions();
+          //  appOptions.setGDPRConsentString("1");
+          //  appOptions.setGDPRRequired(true);
+           // AudienceNetworkAds.initialize(activity);
+            AudienceNetworkAds.initialize(activity);
             MobileAds.initialize(activity, appId);
+          //  MobileAds.initialize(activity, new OnInitializationCompleteListener() {
+          //      @Override
+          //      public void onInitializationComplete(InitializationStatus initializationStatus) {}
+           // });
+
+            
+            //MediationTestSuite.addTestDevice("9B45C6730D606E8951D176909258C415"); 
+            //MediationTestSuite.addTestDevice("2AA5D4D0965DB13F46DAD7A90206104B");
+            //MediationTestSuite.launch(activity);
+            //AudienceNetworkInitializeHelper.initialize(activity);
             _initialized = true;
+          
         }
         _activity = activity;
         _bannerAdUnit = banner;
@@ -121,6 +149,7 @@ public class AdServiceAdMob implements AdService {
         if (adUnit == null || adUnit.length() == 0) {
             throw new RuntimeException("Empty AdUnit");
         }
+        Log.d(TAG, "creating AdBannerAdMob, _personalizedAdsConsent: " + _personalizedAdsConsent + "|" + adUnit + "|" + size + "|" + _testDeviceId + "|" +_isTest + "|" +_gender + "|" + _uAgeConsent);
         return new AdBannerAdMob(ctx, adUnit, size, _personalizedAdsConsent, _testDeviceId, _isTest, _gender, _uAgeConsent);
     }
 
@@ -136,6 +165,9 @@ public class AdServiceAdMob implements AdService {
         if (adUnit == null || adUnit.length() == 0) {
             throw new RuntimeException("Empty AdUnit");
         }
+        
+        Log.d(TAG, "creating AdInterstitialAdMob, _personalizedAdsConsent: " + _personalizedAdsConsent + "|" + adUnit  + "|" + _testDeviceId + "|" +_isTest + "|" +_gender + "|" + _uAgeConsent);
+       
         return new AdInterstitialAdMob(ctx, adUnit, _personalizedAdsConsent, _testDeviceId, _isTest, _gender, _uAgeConsent);
     }
 
