@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.util.Log;
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 
 public class AdMobUtils {
@@ -31,7 +34,9 @@ public class AdMobUtils {
             
             case AdRequest.GENDER_FEMALE:
             case AdRequest.GENDER_MALE:
-                req = req.setGender(gender);
+                Log.d(TAG, "OLAdRequest.GENDER_MALE...");
+                //req = req.setGender(gender);
+                req.setGender(gender);
                 break;
             default:
                 break;
@@ -46,7 +51,9 @@ public class AdMobUtils {
             
             case AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE:
             case AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE:
-                req = req.setTagForUnderAgeOfConsent(underAgeOfConsent);
+                Log.d(TAG, "OLAdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE...");
+               // req = req.setTagForUnderAgeOfConsent(underAgeOfConsent);
+                req.setTagForUnderAgeOfConsent(underAgeOfConsent);
                 break;
             default:
                 break;
