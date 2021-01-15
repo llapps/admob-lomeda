@@ -2,10 +2,15 @@ package com.creativeads.admob;
 
 import android.content.Context;
 import android.os.Bundle;
-import com.google.ads.mediation.admob.AdMobAdapter;
+
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import com.creativeads.AbstractAdInterstitial;
 
 public class AdInterstitialAdMob extends AbstractAdInterstitial {
@@ -59,11 +64,10 @@ public class AdInterstitialAdMob extends AbstractAdInterstitial {
 
     @Override
     public void loadAd() {
-        AdRequest adRequest = AdMobUtils.getAdRequest(adsConsent, isTest, testDeviceId, gender, underAgeOfConsent);
-        // AdRequest adRequest = AdMobUtils.getAdRequest(adsConsent, isTest, testDeviceId);
-        // .addTestDevice("A8CA27EE6F83C9D384A8523CDE61C70C")
+        //AdRequest adRequest = AdMobUtils.getAdRequest(adsConsent, isTest, testDeviceId, gender, underAgeOfConsent);
+        //_interstitial.loadAd(adRequest);
+        _interstitial.loadAd(new AdRequest.Builder().build());
 
-        _interstitial.loadAd(adRequest);
     }
 
     @Override
